@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_playground/create_exoense_sheet.dart';
+import 'package:flutter_playground/create_expense_sheet.dart';
 import 'package:flutter_playground/expenses_list.dart';
 import 'package:flutter_playground/model/expense.dart';
 
@@ -10,9 +10,7 @@ class ExpensesScreen extends StatefulWidget {
 }
 
 class _ExpensesScreenState extends State<ExpensesScreen> {
-  @override
-  Widget build(BuildContext context) {
-    final expenses = <ExpenseModel>[
+  final expenses = <ExpenseModel>[
       ExpenseModel(
         title: 'Flutter Course',
         amount: 19.99,
@@ -32,9 +30,19 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
         category: Category.food,
       ),
     ];
+    
+  void _addNewExpense(ExpenseModel expense) {
+    setState(() {
+      expenses.add(expense);
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    
     return Scaffold(
       appBar: AppBar(
-        title: Text('Expenses', style: TextStyle(color: Colors.black)),
+        title: const Text('Expenses'),
         actions: [
           IconButton(
             icon: const Icon(Icons.add),
@@ -49,7 +57,8 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
   void _openCreateExpenseSheet() {
     showModalBottomSheet(
       context: context,
-      builder: (ctx) => const CreateExpenseSheet(),
+      isScrollControlled: true,
+      builder: (ctx) => CreateExpenseSheet(onAddNewExpense: _addNewExpense),
     );
   }
 }

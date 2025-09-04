@@ -16,11 +16,11 @@ class ExpensesList extends StatelessWidget {
             borderRadius: BorderRadius.circular(6),
           ),
           elevation: 4,
-          color: Colors.purple.shade300,
           margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(expense.title),
                 SizedBox(height: 4),
