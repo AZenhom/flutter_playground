@@ -50,7 +50,10 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
           ),
         ],
       ),
-      body: ExpensesList(expenses: expenses),
+      body: Padding(
+        padding: const EdgeInsets.only(top: 8.0),
+        child: ExpensesList(expenses: expenses),
+      ),
     );
   }
 

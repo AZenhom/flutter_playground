@@ -12,11 +12,6 @@ class ExpensesList extends StatelessWidget {
       itemBuilder: (ctx, index) {
         final expense = expenses[index];
         return Card(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(6),
-          ),
-          elevation: 4,
-          margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
             child: Column(
