@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_playground/meal_app/model/meal_category.dart';
 import 'package:flutter_playground/meal_app/presentation/category_item.dart';
+import 'package:flutter_playground/meal_app/presentation/meals_screen.dart';
 
 class CategoryGridView extends StatefulWidget {
   const CategoryGridView({super.key});
@@ -45,8 +46,15 @@ class _CategoryGridViewState extends State<CategoryGridView> {
         return CategoryItem(
           key: ValueKey(_data[index].id),
           category: _data[index],
+          onSelectCategory: navigateToCategoryDetail,
         );
       },
+    );
+  }
+
+  void navigateToCategoryDetail(MealCategory category) {
+    Navigator.of(context).push(
+      MaterialPageRoute(builder: (context) => MealsScreen(category: category)),
     );
   }
 }
