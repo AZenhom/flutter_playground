@@ -43,7 +43,7 @@ List<Meal> getFakeMeals(MealCategory category) => [
     id: 'm1',
     title: 'Spaghetti with Tomato Sauce',
     imageUrl:
-        'https://picsum.photos/1600/900?random=${Random().nextInt(1000)}',
+        'https://picsum.photos/500?random=${Random().nextInt(1000)}',
     categories: ['c1', 'c2'],
     ingredients: [
       '4 Tomatoes',

@@ -8,29 +8,38 @@ class MealItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        FadeInImage(
-          placeholder: MemoryImage(kTransparentImage),
-          image: NetworkImage(meal.imageUrl),
-        ),
-        Positioned(
-          bottom: 0,
-          left: 0,
-          right: 0,
-          child: Container(
-            padding: const EdgeInsets.all(8),
-            color: Colors.black54,
-            child: Text(
-              meal.title,
-              softWrap: true,
-              textAlign: TextAlign.center,
-              overflow: TextOverflow.ellipsis,
-              style: const TextStyle(fontSize: 20, color: Colors.white),
+    return Card(
+      margin: const EdgeInsets.fromLTRB(16, 16, 16, 0),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+      clipBehavior: Clip.hardEdge,
+      child: Stack(
+        children: [
+          AspectRatio(
+            aspectRatio: 16 / 9,
+            child: FadeInImage(
+              placeholder: MemoryImage(kTransparentImage),
+              image: NetworkImage(meal.imageUrl),
+              fit: BoxFit.cover,
             ),
           ),
-        ),
-      ],
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: Container(
+              padding: const EdgeInsets.all(8),
+              color: Colors.black54,
+              child: Text(
+                meal.title,
+                softWrap: true,
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(fontSize: 20, color: Colors.white),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
