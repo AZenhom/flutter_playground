@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_playground/create_expense_sheet.dart';
-import 'package:flutter_playground/expenses_list.dart';
-import 'package:flutter_playground/model/expense.dart';
+import 'package:flutter_playground/expense_app/presentation/create_expense_sheet.dart';
+import 'package:flutter_playground/expense_app/presentation/expense_chart.dart';
+import 'package:flutter_playground/expense_app/presentation/expenses_list.dart';
+import 'package:flutter_playground/expense_app/model/expense.dart';
 
 class ExpensesScreen extends StatefulWidget {
   const ExpensesScreen({super.key});
@@ -11,24 +12,7 @@ class ExpensesScreen extends StatefulWidget {
 
 class _ExpensesScreenState extends State<ExpensesScreen> {
   final expenses = <ExpenseModel>[
-      ExpenseModel(
-        title: 'Flutter Course',
-        amount: 19.99,
-        date: DateTime.now(),
-        category: Category.work,
-      ),
-      ExpenseModel(
-        title: 'Cinema',
-        amount: 15.69,
-        date: DateTime.now(),
-        category: Category.leisure,
-      ),
-      ExpenseModel(
-        title: 'Pizza',
-        amount: 8.99,
-        date: DateTime.now(),
-        category: Category.food,
-      ),
+
     ];
     
   void _addNewExpense(ExpenseModel expense) {
@@ -52,13 +36,22 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.only(top: 8.0),
-        child: ExpensesList(expenses: expenses),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: ExpenseChart(buckets: groupExpensesByCategory(expenses)),
+            ),
+            Expanded(child: ExpensesList(expenses: expenses)),
+          ],
+        ),
       ),
     );
   }
 
   void _openCreateExpenseSheet() {
     showModalBottomSheet(
+      useSafeArea: true,
       context: context,
       isScrollControlled: true,
       builder: (ctx) => CreateExpenseSheet(onAddNewExpense: _addNewExpense),

@@ -1,53 +1,73 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_playground/expenses_screen.dart';
+import 'package:flutter_playground/expense_app/presentation/expenses_screen.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-final lightColorScheme = ColorScheme.fromSeed(
+// Meal App Theme
+
+final mealColorScheme = ColorScheme.fromSeed(
+  brightness: Brightness.dark,
+  seedColor: const Color.fromARGB(255, 131, 57, 0),
+);
+
+// Expense App Theme
+
+final expenseLightColorScheme = ColorScheme.fromSeed(
   seedColor: const Color.fromARGB(255, 96, 59, 181),
 );
 
-final darkColorScheme = ColorScheme.fromSeed(
+final expenseDarkColorScheme = ColorScheme.fromSeed(
   brightness: Brightness.dark,
   seedColor: const Color.fromARGB(255, 96, 59, 181),
 );
 
 void main() {
+  //runExpenseApp();
+  runMealApp();
+}
+
+void runMealApp() {
   runApp(
     MaterialApp(
       theme: ThemeData().copyWith(
-        colorScheme: lightColorScheme,
+        colorScheme: mealColorScheme,
+        textTheme: GoogleFonts.latoTextTheme(),
+      ),
+      home: const Scaffold(
+        body: Center(
+          child: Text('Hello World!'),
+        ),
+      ),
+    ),
+  );
+}
+
+void runExpenseApp() {
+  runApp(
+    MaterialApp(
+      theme: ThemeData().copyWith(
+        colorScheme: expenseLightColorScheme,
         appBarTheme: const AppBarTheme().copyWith(
-          backgroundColor: lightColorScheme.onPrimaryContainer,
-          foregroundColor: lightColorScheme.primaryContainer,
+          backgroundColor: expenseLightColorScheme.onPrimaryContainer,
+          foregroundColor: expenseLightColorScheme.primaryContainer,
         ),
         cardTheme: CardThemeData(
-          color: lightColorScheme.secondaryContainer,
-          margin: const EdgeInsets.symmetric(
-            horizontal: 16,
-            vertical: 8,
-          ),
+          color: expenseLightColorScheme.secondaryContainer,
+          margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           elevation: 4,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(6),
-          ),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
         ),
-        
       ),
       darkTheme: ThemeData.dark().copyWith(
-        colorScheme: darkColorScheme,
+        colorScheme: expenseDarkColorScheme,
         appBarTheme: const AppBarTheme().copyWith(
-          backgroundColor: darkColorScheme.onPrimaryContainer,
-          foregroundColor: darkColorScheme.primaryContainer,
+          backgroundColor: expenseDarkColorScheme.onPrimaryContainer,
+          foregroundColor: expenseDarkColorScheme.primaryContainer,
         ),
         cardTheme: CardThemeData(
-          color: darkColorScheme.secondaryContainer,
-          margin: const EdgeInsets.symmetric(
-            horizontal: 16,
-            vertical: 8,
-          ),
+          color: expenseDarkColorScheme.secondaryContainer,
+          margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           elevation: 4,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(6),
-          ),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
         ),
       ),
       home: const ExpensesScreen(),
