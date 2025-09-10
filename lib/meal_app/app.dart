@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_playground/meal_app/presentation/categories_screen.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 final mealColorScheme = ColorScheme.fromSeed(
@@ -9,12 +10,14 @@ final mealColorScheme = ColorScheme.fromSeed(
 
 void runMealApp() {
   runApp(
-    MaterialApp(
-      theme: ThemeData().copyWith(
-        colorScheme: mealColorScheme,
-        textTheme: GoogleFonts.latoTextTheme(),
+    ProviderScope(
+      child: MaterialApp(
+        theme: ThemeData().copyWith(
+          colorScheme: mealColorScheme,
+          textTheme: GoogleFonts.latoTextTheme(),
+        ),
+        home: const CategoriesScreen(),
       ),
-      home: const CategoriesScreen(),
     ),
   );
 }

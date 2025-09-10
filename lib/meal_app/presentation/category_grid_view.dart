@@ -2,57 +2,48 @@ import 'package:flutter/material.dart';
 import 'package:flutter_playground/meal_app/model/meal_category.dart';
 import 'package:flutter_playground/meal_app/presentation/category_item.dart';
 import 'package:flutter_playground/meal_app/presentation/meals_screen.dart';
+import 'package:flutter_playground/meal_app/providers/categories_provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class CategoryGridView extends StatefulWidget {
+class CategoryGridView extends ConsumerWidget {
   const CategoryGridView({super.key});
 
   @override
-  State<CategoryGridView> createState() => _CategoryGridViewState();
-}
-
-class _CategoryGridViewState extends State<CategoryGridView> {
-  final List<MealCategory> _data = [];
-
-  @override
-  void initState() {
-    super.initState();
-    _fetchInitialData();
-  }
-
-  Future<void> _fetchInitialData() async {
-    try {
-      await Future.delayed(const Duration(milliseconds: 500));
-      setState(() {
-        _data.clear();
-        _data.addAll(getFakeCategories());
-      });
-    } catch (e) {
-      print('Error fetching data: $e');
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return GridView.builder(
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        childAspectRatio: 3 / 2,
-        crossAxisSpacing: 20,
-        mainAxisSpacing: 20,
-      ),
-      padding: const EdgeInsets.all(16),
-      itemCount: _data.length,
-      itemBuilder: (context, index) {
-        return CategoryItem(
-          key: ValueKey(_data[index].id),
-          category: _data[index],
-          onSelectCategory: navigateToCategoryDetail,
-        );
-      },
+  Widget build(BuildContext context, WidgetRef ref) {
+    return Container(
+      child: ref
+          .watch(categoriesProvider)
+          .when(
+            data: (categories) {
+              return GridView.builder(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: 3 / 2,
+                  crossAxisSpacing: 20,
+                  mainAxisSpacing: 20,
+                ),
+                padding: const EdgeInsets.all(16),
+                itemCount: categories.length,
+                itemBuilder: (context, index) {
+                  return CategoryItem(
+                    key: ValueKey(categories[index].id),
+                    category: categories[index],
+                    onSelectCategory: (category) => navigateToCategoryMeals(category, context),
+                  );
+                },
+              );
+            },
+            error: (error, stack) {
+              return Center(child: Text('Error: $error'));
+            },
+            loading: () {
+              return const Center(child: CircularProgressIndicator());
+            },
+          ),
     );
   }
 
-  void navigateToCategoryDetail(MealCategory category) {
+  void navigateToCategoryMeals(MealCategory category, BuildContext context) {
     Navigator.of(context).push(
       MaterialPageRoute(builder: (context) => MealsScreen(category: category)),
     );
