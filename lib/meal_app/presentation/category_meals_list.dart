@@ -4,9 +4,9 @@ import 'package:flutter_playground/meal_app/presentation/meal_item.dart';
 import 'package:flutter_playground/meal_app/providers/meals_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class MealsList extends ConsumerWidget {
+class CategoryMealsList extends ConsumerWidget {
   final MealCategory category;
-  const MealsList({super.key, required this.category});
+  const CategoryMealsList({super.key, required this.category});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

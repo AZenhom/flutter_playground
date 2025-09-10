@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_playground/meal_app/model/meal_category.dart';
-import 'package:flutter_playground/meal_app/presentation/meals_list.dart';
+import 'package:flutter_playground/meal_app/presentation/category_meals_list.dart';
 
 class MealsScreen extends StatelessWidget {
   final MealCategory category;
@@ -10,7 +10,7 @@ class MealsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(category.title)),
-      body: MealsList(category: category),
+      body: CategoryMealsList(category: category),
     );
   }
 }
