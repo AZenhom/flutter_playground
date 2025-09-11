@@ -48,10 +48,21 @@ class MealItem extends ConsumerWidget {
             ),
             Positioned(
               child: Center(
-                child: Icon(
-                  isFavourite ? Icons.star : Icons.star_border,
-                  color: Colors.white,
-                  size: 48,
+                child: AnimatedCrossFade(
+                  duration: const Duration(milliseconds: 300),
+                  firstChild: Icon(
+                    Icons.star,
+                    color: Colors.white,
+                    size: 48,
+                  ),
+                  secondChild: Icon(
+                    Icons.star_border,
+                    color: Colors.white,
+                    size: 48,
+                  ),
+                  crossFadeState: isFavourite
+                      ? CrossFadeState.showFirst
+                      : CrossFadeState.showSecond,
                 ),
               ),
               top: 0,
