@@ -10,6 +10,8 @@ class MealItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final list = ref.watch(favouritesProvider);
+    final isFavourite = list.contains(meal);
     return Card(
       margin: const EdgeInsets.fromLTRB(16, 16, 16, 0),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
@@ -43,6 +45,19 @@ class MealItem extends ConsumerWidget {
                   style: const TextStyle(fontSize: 20, color: Colors.white),
                 ),
               ),
+            ),
+            Positioned(
+              child: Center(
+                child: Icon(
+                  isFavourite ? Icons.star : Icons.star_border,
+                  color: Colors.white,
+                  size: 48,
+                ),
+              ),
+              top: 0,
+              right: 0,
+              bottom: 0,
+              left: 0,
             ),
           ],
         ),

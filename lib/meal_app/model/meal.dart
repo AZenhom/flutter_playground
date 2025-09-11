@@ -1,7 +1,3 @@
-import 'dart:math';
-
-import 'package:flutter_playground/meal_app/model/meal_category.dart';
-
 enum Complexity { simple, challenging, hard }
 
 enum Affordability { affordable, pricey, luxurious }

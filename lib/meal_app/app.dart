@@ -9,6 +9,7 @@ final mealColorScheme = ColorScheme.fromSeed(
 );
 
 void runMealApp() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(
     ProviderScope(
       child: MaterialApp(
