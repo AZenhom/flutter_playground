@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_playground/meal_app/presentation/2pay_screen.dart';
 import 'package:flutter_playground/meal_app/presentation/main_tabs_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -17,7 +18,7 @@ void runMealApp() {
           colorScheme: mealColorScheme,
           textTheme: GoogleFonts.latoTextTheme(),
         ),
-        home: MainTabsScreen(),
+        home: SplashScreen(),
       ),
     ),
   );
