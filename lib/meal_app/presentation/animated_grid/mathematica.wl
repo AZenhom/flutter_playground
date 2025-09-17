@@ -1,23 +1,23 @@
 is = {500, 500};
 
 bg = ImageRotate[
-  LinearGradientImage[
-   RGBColor @@@ {{0.024, 0.051, 0.125}, {0.122, 0.078, 0.212}, {0.216,
-       0.102, 0.275}, {0.216, 0.102, 0.275}}, is], -90 °]
+  LinearGradientImage[{RGBColor["#3F12BBF5"], RGBColor["#3874FF99"]}, is], -90 Degree]
 
-mask = ImageRotate[
-  LinearGradientImage[{Sequence @@ Table[RGBColor[0, 0, 0, 0], 5], 
-    RGBColor[0.09, 0.07, 0.196, .3], RGBColor[0.09, 0.07, 0.196, .9], 
-    RGBColor[0.023, 0.050, 0.125, 1]}, is], 90 °]
+mask = RadialGradientImage[{
+    RGBColor[0, 0, 0, 0],
+    RGBColor[0.09, 0.07, 0.196, 0.3],
+    RGBColor[0.09, 0.07, 0.196, 0.9],
+    RGBColor[0.023, 0.05, 0.125, 1]},
+   is];
 
 grid[j_ : 5] := 
  Module[{g3d, b}, 
   Overlay[{Image[bg, ImageSize -> All], 
-    g3d = Graphics3D[{Thickness[0.005], RGBColor[0.905, 0.352, 0.713],
+    g3d = Graphics3D[{Thickness[0.003], RGBColor["#FFFFFF"],
         Sequence @@ 
         Table[InfiniteLine[{{0, i + j, 0}, {1, i + j, 0}}], {i, -10, 
           20}], Table[
-        InfiniteLine[{{i, 0, 0}, {i, 1, 0}}], {i, -20, 20}]}, 
+        InfiniteLine[{{i, 0, 0}, {i, 1, 0}}], {i, -10,   10}]}, 
       Boxed -> False, ViewAngle -> Pi/3, 
       ViewVector -> {{0, -5, 6}, {0, -1, 2}}, Background -> None, 
       PlotRange -> All, ImageSize -> is], 
